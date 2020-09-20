@@ -206,25 +206,25 @@ Based on our observation, we noticed that there are two major types of replies.<
 <h5 id="i-stoplist">i. Stoplist</h5>
 <p>After collecting data, we removed punctuations to prevent them from confusing the classification model. Also, since stopwords are meaningless to the sentence, they are removed using our customised stoplist. As the current libraries are only available in English or Mandarin, we have to customise one ourselves. Here is our stoplist example.
 <figure>
-    <img src="/images/single-blog/speedreply/hkstoplist.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/hkstoplist.png"/> 
 </figure>
 </p>
 <h5 id="ii-token-list">ii. Token List</h5>
 <p>Apart from stoplist, we also had to customize a tokenisation list in order to cut sentence in Cantonese. Here is our token list example.
 <figure>
-    <img src="/images/single-blog/speedreply/token.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/token.png"/> 
 </figure>
 </p>
 <h5 id="iii-label-intent">iii. Label Intent</h5>
 <p>In our classification model, we will create four intents (i.e. positive, refund, enquiry and feedback). Therefore, we need four labels for our data.
 <figure>
-    <img src="/images/single-blog/speedreply/data_collect.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/data_collect.png"/> 
 </figure>
 </p>
 <p>Besides, since we used supervised learning approach to train the intent prediction model, we labelled the comment sentiment based on number of stars. Comments with one to two stars were labelled as negative while the rest were positive. For the negative comments, we further classified them into enquiry, refund and feedback.</p>
 <p>In order to label intent in a more accurate way, we used a word2vec model to find as many synonymous words for each intent as possible.<br>
 <figure>
-    <img src="/images/single-blog/speedreply/word2vec.gif"/> <figcaption>
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/word2vec.gif"/> <figcaption>
             <h4>Visualisation of embedded keywords and their nearest neighbours</h4>
         </figcaption>
 </figure>
@@ -232,7 +232,7 @@ Based on our observation, we noticed that there are two major types of replies.<
 <h5 id="iv-handle-imbalanced-data">iv. Handle Imbalanced Data</h5>
 <p>Since the data are collected in real-life, it is common that the data are imbalanced. We used SMOTE resampling techniques to oversample the data. So that a more accurate result can be obtained when predicting the intent for each comment.
 <figure>
-    <img src="/images/single-blog/speedreply/smote.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/smote.png"/> 
 </figure>
 </p>
 <h5 id="v-eliminate-irrelevant-data">v. Eliminate Irrelevant Data</h5>
@@ -243,7 +243,7 @@ Based on our observation, we noticed that there are two major types of replies.<
 <p>As mentioned above, we have built three models for our SpeedReply solution. They are Intent Prediction Model, Negative Reply Recommender Model, Positive Chitchat Model.
 Generally speaking, our SpeedReply solution works by predicting the intent for incoming comments. If the predicted intent is positive, the system will generate response in chitchat tone using Positive Chitchat Model. For the remaining intent, Negative Recommender Model will be used. Both models will generate up to three responses for user to choose from. After further customisation, the related replies will be submitted to social media platform. The below flowchart illustrates the general workflow of our SpeedReply solution.
 <figure>
-    <img src="/images/single-blog/speedreply/speedreply.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/speedreply.png"/> 
 </figure>
 </p>
 <h4 id="3a-intent-prediction-model">3a. Intent Prediction Model</h4>
@@ -252,7 +252,7 @@ Generally speaking, our SpeedReply solution works by predicting the intent for i
 <p>Nowadays, customers always approach staff through e-channels with various issues, like enquiries, product/ service reviews, complaints, after-sale services. However, it is very time-consuming to reply to each comment one by one. To ease the workload of staff, we created a Doc2Vec model for generating suggested replies. Since each company will have different templates for staff to follow and further customize on, our model will suggest related replies based on the customer comments.</p>
 <p>Before training the model, we tokenized and removed the stopwords from the data. And then tag each comment as one document. After training, we used Doc2Vec Model to find the top 3 most similar comments from the dataset and get the related replies as recommendations. As the replies in the dataset have already been customised based on the official templates, it is believed that the time for writing unique replies can be drastically reduced. All they have to do is to add back some specific details like order number and product name.
 <figure>
-    <img src="/images/single-blog/speedreply/negreply.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/negreply.png"/> 
 </figure>
 
 The accuracy of this model is 70%.</p>
@@ -262,7 +262,7 @@ The accuracy of this model is 70%.</p>
 <p>Since we are using bidirectional approach for training, we build up 2 GPT2 Models: one for forward training, one for backward training. So that we can find the best generated response.</p>
 <p>For response prediction, like the traditional approach, the model generates the response word by word. To enhance the accuracy, the model will try using the generated response to backward predict the comment to calculate the accuracy. The model will generate up to three alternative responses for users to choose from. And then they can select and further customize the reply based on the generated results. It is believed that the work efficiency can be enhanced and hence the brand can be more responsive when it comes to customer relationship management.
 <figure>
-    <img src="/images/single-blog/speedreply/chitchatpos.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/chitchatpos.png"/> 
 </figure>
 </p>
 <p>The accuracy of this model is 60% which is pretty good for this kind of model. In long term, reinforcement training is required in order to enhance the accuracy and diversity of generated replies.</p>
@@ -274,14 +274,14 @@ The accuracy of this model is 70%.</p>
 <p>Sample size was a main concern. Although there are many online shops and social media touch points, many of them does not offer comments section. Even for those who do, most of them do not reply (Which highlights the importance of why Speed Reply can step in and improve customer journey).</p>
 <p>Although we could have increased the data source by extracting the vast amount of data from Taobao and t-mall, we did not proceed with this approach. This is because the reply style and tone from Mainland China are vastly different from Hong Kong. For example (Per below), stores will reply with compliments that will be deemed as exaggeration via Hong Kong users. As we are predominantly building a tool for Hong Kong businesses replying to Cantonese speaking users, we were better off using datasets from Hong Kong websites and social media pages.</p>
 <figure>
-    <img src="/images/single-blog/speedreply/tmall.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/tmall.png"/> 
 </figure>
 
 <h3 id="2-named-entity-recognition">2. Named Entity Recognition</h3>
 <p>To provide an instant understanding beside speed reply, we also applied NER(Name Entity Recognition). NER can extract and label keyword entity with color from the comment, such as product name, detail of request, feeling.</p>
 <p>To achieve this, we label all the keyword based on the format of NER (‘B-XXX’,’I-XXX’,’O’) and make use of Bert to train the data. After that, the entity can be clearly recognized and visualized from every customer input.
 <figure>
-    <img src="/images/single-blog/speedreply/ner.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/ner.png"/> 
 </figure>
 </p>
 <p>Yet, due to the model size, it takes time to load NER every time. Considering the efficiency of reply recommendation, we chose not to deploy NER to our demo.</p>
@@ -290,7 +290,7 @@ The accuracy of this model is 70%.</p>
 <p>For now, Speed Reply can offer suggestions in very generalized manner; with increased dataset, stopwords, tokenization list and optimizations on machine learning model (Such as neural network parameters and layers) - more precise, customised response recommendation can be achieved and further provide positive customer journey to the customers.</p>
 <p>Furthermore, Speed Reply can only process text comments/replies. However, as customers now also have the choice of using multimedia to reply (Such as animated GIFs as per below), we can look into implementing computer vision to process image related comments.
 <figure>
-    <img src="/images/single-blog/speedreply/simon.png"/> 
+    <img src="https://elleryc.github.io/ellerychan/images/single-blog/speedreply/simon.png"/> 
 </figure>
 </p>
 <p>Aside from reply suggestions, we will also look to assist brands in other aspects of online presence such as:</p>
@@ -345,7 +345,7 @@ The accuracy of this model is 70%.</p>
                   <ul>
                       
                       <li><a href="mailto:hooyeeechan@gmail.com"><i class="fa fa-envelope"></i>hooyeeechan@gmail.com</a></li>
-                      <li><a href="https://www.linkedin.com/in/ellery-chan-57355a14b/"><i class="fa fa-linkedin"></i>Ellery Chan</a></li>
+                      <li><a href="https://www.linkedin.com/in/ellery-chan-57355a14b/"><i class="fa fa-linkedin-square"></i>Ellery Chan</a></li>
                       <li><a href="https://github.com/elleryc"><i class="fa fa-github"></i>Ellery Chan</a></li>
                       
                   </ul>
@@ -362,7 +362,7 @@ The accuracy of this model is 70%.</p>
               <div class="contact__footer_social">
                   <ul>
                       
-                      <li><a href="https://www.linkedin.com/in/ellery-chan-57355a14b/"><i class="fa fa-linkedin"></i></a></li>
+                      <li><a href="https://www.linkedin.com/in/ellery-chan-57355a14b/"><i class="fa fa-linkedin-square"></i></a></li>
                       
                       <li><a href="https://github.com/elleryc"><i class="fa fa-github"></i></a></li>
                   </ul>
