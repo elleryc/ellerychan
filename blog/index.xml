@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recent Projects on Ellery Chan</title>
+    <link>https://elleryc.github.io/ellerychan/blog/</link>
+    <description>Recent content in Recent Projects on Ellery Chan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 10 Aug 2020 11:00:59 -0400</lastBuildDate>
+    
+	<atom:link href="https://elleryc.github.io/ellerychan/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Speed Reply - Your Smart CRM Solution</title>
+      <link>https://elleryc.github.io/ellerychan/blog/speedreply/</link>
+      <pubDate>Mon, 10 Aug 2020 11:00:59 -0400</pubDate>
+      
+      <guid>https://elleryc.github.io/ellerychan/blog/speedreply/</guid>
+      <description>In past few months, we partnered with Speed Reply on developing a smart customer reply solution. SpeedReply is a smart solution that identifies intent of comments on social media and then generate up to three replies for the related comment. Users can further customised the selected comment and submit replies through our system. Our goal is to help brand become more responsive and reduce the workload of social media page managers.</description>
+    </item>
+    
+    <item>
+      <title>Ultrasa - Your AI Companion Chatbot</title>
+      <link>https://elleryc.github.io/ellerychan/blog/ultrasa/</link>
+      <pubDate>Sun, 10 May 2020 11:00:59 -0400</pubDate>
+      
+      <guid>https://elleryc.github.io/ellerychan/blog/ultrasa/</guid>
+      <description>Introduction Ultrasa is created using RASA X. Basically, it is a chatbot that can chitchat with users.You might wonder how Ultrasa works. Here&amp;rsquo;s the answer. Link to GitHub Repository   For each incoming message, Ultrasa will predict intent of the message and give response based on intent. If the related intent requires some actions like action_suggestplaylist, Ultrasa will carry out the action and then give final output.
+Components Used To predict intent, We used a sequence of components.</description>
+    </item>
+    
+    <item>
+      <title>Job Market Analysis through Indeed.com</title>
+      <link>https://elleryc.github.io/ellerychan/blog/indeed_data_analysis/</link>
+      <pubDate>Thu, 09 Apr 2020 10:58:08 -0400</pubDate>
+      
+      <guid>https://elleryc.github.io/ellerychan/blog/indeed_data_analysis/</guid>
+      <description>Introduction We scraped all the data analyst and data scientist job from indeed.com.hk and indeed.com.sg. A total of 978 jobs and 1152 jobs are found on indeed.hk and indeed.sg respectively.
+Link to GitHub Repository
+Our Findings Here are some of our findings:
+ Singapore provides more data job offers than Hong Kong. Huge variations in job requirements across companies. Indeed.com.sg has better structured data.      Python and Excel are essential programming tools.</description>
+    </item>
+    
+  </channel>
+</rss>
