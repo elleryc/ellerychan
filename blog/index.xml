@@ -6,10 +6,20 @@
     <description>Recent content in Recent Projects on Ellery Chan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Aug 2020 11:00:59 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 09 Sep 2020 10:58:08 -0400</lastBuildDate>
     
 	<atom:link href="https://elleryc.github.io/ellerychan/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Credit Card Fraud Detection</title>
+      <link>https://elleryc.github.io/ellerychan/blog/fraud_detection/</link>
+      <pubDate>Wed, 09 Sep 2020 10:58:08 -0400</pubDate>
+      
+      <guid>https://elleryc.github.io/ellerychan/blog/fraud_detection/</guid>
+      <description>Introduction In most cases, fraud can be identified only after it happens. In the era of e-commerce, more companies are now starting to realise the importance of fraud detection.
+In this project, I picked the Credit Card Fraud Dataset from Kaggle. According to the ReadMe File, the datasets contains transactions made by credit cards in September 2013 by european cardholders. The dataset is highly unbalanced, the positive class (frauds) account for 0.</description>
+    </item>
     
     <item>
       <title>Speed Reply - Your Smart CRM Solution</title>

@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8" />
+  <title>Credit Card Fraud Detection</title>
+
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <!-- Slick Carousel --> 
+  <link rel="stylesheet" href="https://elleryc.github.io/ellerychan/plugins/slick/slick.css" />
+  <link rel="stylesheet" href="https://elleryc.github.io/ellerychan/plugins/slick/slick-theme.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://elleryc.github.io/ellerychan/plugins/font-awesome/css/font-awesome.min.css" />
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://elleryc.github.io/ellerychan/plugins/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://elleryc.github.io/ellerychan/plugins/magnafic-popup/magnific-popup.css" />
+
+  <!-- Stylesheets -->
+  
+  <link href="https://elleryc.github.io/ellerychan/scss/style.min.css" rel="stylesheet" />
+
+  <!--Favicon-->
+  <link rel="shortcut icon" href="https://elleryc.github.io/ellerychan/images/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="https://elleryc.github.io/ellerychan/images/favicon.png" type="image/x-icon" />
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR%20GOOGLE%20ANALYTICS%20CODE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'YOUR GOOGLE ANALYTICS CODE');
+  </script>
+	
+</head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+      <a href="https://elleryc.github.io/ellerychan/" class="navbar-brand">
+          <img src="https://elleryc.github.io/ellerychan/images/site-navigation/logo.png" alt="site-logo">
+      </a>
+      <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <ul class="nav navbar-nav main-navigation">
+              
+              
+                <li class="nav-item">
+                  <a href="https://elleryc.github.io/ellerychan/#home" class="nav-link ">Home</a>
+                </li>
+              
+                <li class="nav-item">
+                  <a href="https://elleryc.github.io/ellerychan/#about" class="nav-link ">About</a>
+                </li>
+              
+                <li class="nav-item">
+                  <a href="https://elleryc.github.io/ellerychan/#resume" class="nav-link ">Resume</a>
+                </li>
+              
+                <li class="nav-item">
+                  <a href="https://elleryc.github.io/ellerychan/#blog" class="nav-link ">Projects</a>
+                </li>
+              
+                <li class="nav-item">
+                  <a href="https://elleryc.github.io/ellerychan/#contact" class="nav-link ">Contact</a>
+                </li>
+              
+          </ul>
+          
+      <ul>
+        <a href="https://www.linkedin.com/in/ellery-chan-57355a14b/" target="_blank" class="link-transition linkedin link dib z-999 pt3 pt0-l mr1" title="LinkedIn link" rel="noopener" aria-label="follow on LinkedIn——Opens in a new window">
+          <svg height="32px" style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"></path>
+        </svg>
+        <span class="new-window"><svg height="8px" style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"></path>
+        </svg>
+        </span></a>
+        
+        <a href="https://github.com/elleryc" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+          <svg height="32px" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"></path>
+        </svg>
+        
+        <span class="new-window"><svg height="8px" style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"></path>
+        </svg>
+        </span></a>
+      </ul>
+      
+      </div>
+  </div>
+</nav>
+    <div id="content">
+      
+
+<header class="breadCrumb">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-md-12 offset-lg-1 offset-md-0 text-center">
+        <h3 class="breadCrumb__title">Credit Card Fraud Detection</h3>
+        <nav aria-label="breadcrumb" class="d-flex justify-content-center">
+          <ol class="breadcrumb align-items-center">
+            <li class="breadcrumb-item"><a href=https://elleryc.github.io/ellerychan/>Home</a></li>
+            <li class="breadcrumb-item"><a href=https://elleryc.github.io/ellerychan/blog>All Post</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Credit Card Fraud Detection</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section singleBlog">
+  <div class="svg-img">
+      <img src=https://elleryc.github.io/ellerychan/images/hero/figure-svg.svg alt="">
+  </div>
+  <div class="animate-shape">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 600">
+          <defs>
+              <linearGradient id="d" x1="0.929" y1="0.111" x2="0.263" y2="0.935" gradientUnits="objectBoundingBox">
+                  <stop offset="0" stop-color="#f1f6f9" />
+                  <stop offset="1" stop-color="#f1f6f9" stop-opacity="0" />
+              </linearGradient>
+          </defs>
+          <g data-name="blob-shape (3)">
+              <path class="blob" fill="url(#d)"
+                  d="M455.4 151.1c43.1 36.7 73.4 92.8 60.8 136.3-12.7 43.5-68.1 74.4-111.3 119.4-43.1 45-74 104.1-109.8 109-35.9 5-76.7-44.2-111.8-89.2-35.2-45-64.7-85.8-70.8-132.6-6-46.8 11.6-99.6 46.7-136.3 35.2-36.6 88-57.2 142.4-58.8 54.5-1.7 110.6 15.6 153.8 52.2z" />
+          </g>
+      </svg>
+  </div>
+  <div class="animate-pattern">
+      <img src=https://elleryc.github.io/ellerychan/images/service/background-pattern.svg alt="background-shape">
+  </div>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="singleBlog__feature">
+                  <img src=https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/fraud.jpeg alt="feature-image">
+              </div>
+          </div>
+      </div>
+      <div class="row mt-5">
+          <div class="col-lg-12">
+              <div class="singleBlog__content">
+                  <h2 id="introduction">Introduction</h2>
+<p>In most cases, fraud can be identified  only after it happens. In the era of e-commerce, more companies are now starting to realise the importance of fraud detection.</p>
+<p>In this project, I picked the <a href="https://www.kaggle.com/mlg-ulb/creditcardfraud?select=creditcard.csv">Credit Card Fraud Dataset</a> from Kaggle. According to the ReadMe File, the datasets contains transactions made by credit cards in September 2013 by european cardholders. The dataset is highly unbalanced, the positive class (frauds) account for 0.172% of all transactions. Besides, because of privacy issues, this dataset has undergone PCA transformation.</p>
+<p>Feature &lsquo;Time&rsquo; contains the seconds elapsed between each transaction and the first transaction in the dataset. The feature &lsquo;Amount&rsquo; is the transaction amount, this feature can be used for example-dependant cost-senstive learning. Feature &lsquo;Class&rsquo; is the response variable and it takes value 1 in case of fraud and 0 otherwise.</p>
+<p><a href="https://github.com/elleryc/credit_card_fraud.git">Link to GitHub Repository</a></p>
+<h3 id="project-objectives">Project Objectives</h3>
+<p>To identify credit card fraud transactions</p>
+<h3 id="methodologies">Methodologies</h3>
+<p>I am going to try out both undersampling and oversampling techniques to balance the data to see which sampling technique gives the best accuracy to the predicted results.</p>
+<h3 id="remarks">Remarks</h3>
+<p>Given the class imbalance ratio, we recommend measuring the accuracy using the Area Under the Precision-Recall Curve (AUPRC). Confusion matrix accuracy is not meaningful for unbalanced classification.</p>
+<h1 id="step-1-import-required-libraries-and-data">Step 1: Import Required Libraries and Data</h1>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
+<span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
+<span style="color:#f92672">from</span> scipy <span style="color:#f92672">import</span> stats 
+<span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
+<span style="color:#f92672">from</span> scipy.stats <span style="color:#f92672">import</span> norm
+<span style="color:#f92672">from</span> sklearn.preprocessing <span style="color:#f92672">import</span> RobustScaler
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split, KFold,RandomizedSearchCV
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> roc_curve, recall_score
+<span style="color:#f92672">import</span> sklearn.metrics <span style="color:#f92672">as</span> metrics
+
+<span style="color:#75715e"># Undersampling</span>
+<span style="color:#f92672">from</span> imblearn.under_sampling <span style="color:#f92672">import</span> NearMiss
+<span style="color:#f92672">from</span> imblearn.over_sampling <span style="color:#f92672">import</span> SMOTE
+<span style="color:#f92672">from</span> imblearn.pipeline <span style="color:#f92672">import</span> Pipeline, make_pipeline
+
+<span style="color:#75715e"># Clustering</span>
+<span style="color:#f92672">import</span> scipy.cluster.hierarchy <span style="color:#f92672">as</span> shc
+<span style="color:#f92672">from</span> sklearn.cluster <span style="color:#f92672">import</span> AgglomerativeClustering
+<span style="color:#f92672">from</span> sklearn.cluster <span style="color:#f92672">import</span> KMeans
+<span style="color:#f92672">from</span> sklearn.decomposition <span style="color:#f92672">import</span> PCA
+<span style="color:#f92672">from</span> sklearn.manifold <span style="color:#f92672">import</span> TSNE
+
+<span style="color:#75715e"># Classifier</span>
+<span style="color:#f92672">from</span> sklearn.linear_model <span style="color:#f92672">import</span> LogisticRegression
+<span style="color:#f92672">from</span> xgboost <span style="color:#f92672">import</span> XGBClassifier
+<span style="color:#f92672">from</span> sklearn.neighbors <span style="color:#f92672">import</span> KNeighborsClassifier
+<span style="color:#f92672">from</span> sklearn.svm <span style="color:#f92672">import</span> SVC
+<span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier,AdaBoostClassifier
+
+<span style="color:#75715e"># Cross Validation</span>
+<span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score, f1_score, recall_score, precision_score, confusion_matrix,classification_report
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> GridSearchCV, cross_val_score
+
+<span style="color:#75715e"># Learning Curve</span>
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> learning_curve
+<span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> ShuffleSplit
+
+df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#39;creditcard.csv&#39;</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>As mentioned by the dataset, the v1 - v28 features has been rescaled before the PCA transformation. So the only features that require scaling are &lsquo;Time&rsquo; and &lsquo;Amount&rsquo;.</p>
+<h1 id="step-2--check-for-missing-data">Step 2:  Check for missing data</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df<span style="color:#f92672">.</span>isnull()<span style="color:#f92672">.</span>sum()
+</code></pre></div><pre><code>Time      0
+V1        0
+V2        0
+V3        0
+V4        0
+V5        0
+V6        0
+V7        0
+V8        0
+V9        0
+V10       0
+V11       0
+V12       0
+V13       0
+V14       0
+V15       0
+V16       0
+V17       0
+V18       0
+V19       0
+V20       0
+V21       0
+V22       0
+V23       0
+V24       0
+V25       0
+V26       0
+V27       0
+V28       0
+Amount    0
+Class     0
+dtype: int64
+</code></pre>
+<p>We have no missing data in this dataset.</p>
+<h1 id="step-3-explore-data">Step 3: Explore Data</h1>
+<h2 id="imbalanced-data--fraud-and-not-fraud">Imbalanced Data : Fraud and Not Fraud</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fraud_cnt <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>Class<span style="color:#f92672">.</span>value_counts()
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Not Fraud: {}%&#39;</span><span style="color:#f92672">.</span>format(round(fraud_cnt[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> sum(fraud_cnt) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">2</span>)))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Fraud: {}%&#39;</span><span style="color:#f92672">.</span>format(round(fraud_cnt[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">/</span> sum(fraud_cnt) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>, <span style="color:#ae81ff">2</span>)))
+sns<span style="color:#f92672">.</span>countplot(<span style="color:#e6db74">&#39;Class&#39;</span>, data <span style="color:#f92672">=</span> df)
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Not Fraud (0) vs Fraud (1)&#39;</span>)
+</code></pre></div><pre><code>Not Fraud: 99.83%
+Fraud: 0.17%
+Text(0.5, 1.0, 'Not Fraud (0) vs Fraud (1)')
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_13_2.png" alt="png"></p>
+<p>With no suprise, the fraud and not fraud data are seriously imbalanced.</p>
+<h2 id="explore-the-distribution-of-time-and-amount">Explore the Distribution of Time and Amount</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">5</span>))
+sns<span style="color:#f92672">.</span>boxplot(df[<span style="color:#e6db74">&#39;Amount&#39;</span>], ax <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Transaction Amount&#39;</span>)
+sns<span style="color:#f92672">.</span>boxplot(df[<span style="color:#e6db74">&#39;Time&#39;</span>], ax <span style="color:#f92672">=</span> ax[<span style="color:#ae81ff">1</span>])<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Transaction Time&#39;</span>)
+</code></pre></div><pre><code>Text(0.5, 1.0, 'Transaction Time')
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_16_1.png" alt="png"></p>
+<p>As shown here, the distribution of transaction amount is right-skewed. To reduce the outliner effect, I am going to use Robust Scaler to scale the &lsquo;Time&rsquo; and &lsquo;Amount&rsquo;.</p>
+<h1 id="step-4-scale-the-transaction-time-and-amount-data">Step 4: Scale the Transaction Time and Amount data</h1>
+<p>As there are some outliers in &lsquo;Amount&rsquo;, RobustScaler is used to reduce the effect caused by outliers. The scaler removes median and scales the data according to the interquartile range.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">scaler <span style="color:#f92672">=</span> RobustScaler()
+df[<span style="color:#e6db74">&#39;Time&#39;</span>] <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>fit_transform(df[<span style="color:#e6db74">&#39;Time&#39;</span>]<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>reshape(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+df[<span style="color:#e6db74">&#39;Amount&#39;</span>] <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>fit_transform(df[<span style="color:#e6db74">&#39;Amount&#39;</span>]<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>reshape(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+</code></pre></div><h1 id="methodologies-1">Methodologies</h1>
+<p>I am going to try out both undersampling and oversampling techniques to balance the data to see which sampling techniques give the best accuracy to the predicted results. As the dataset is highly imbalanced, undersampling/oversampling is required in order to prevent the model from overfitting and able to detect fraud transaction. Otherwise, the model will be biased towards majority class (i.e. Not Fraud).</p>
+<h2 id="step-51---method-1--random-undersample-data-before-cv">Step 5.1 - Method 1 : Random Undersample Data Before CV</h2>
+<p>Random undersampling is used to undersample the majority class.</p>
+<h4 id="remarks-1">Remarks</h4>
+<p>I undersampled the training data in the wrong way, while method 2 is the correct way to do undersampling. In this wrong method, data are undersampled before splitting the training and testing data, in which I should only resampled the training data instead. The training set and validation set will share the same sample, which leads to overfitting and misleading results. The reason I decided to keep this part is that I want to show the mistake that I made.</p>
+<h5 id="reference">Reference</h5>
+<ol>
+<li><a href="https://kiwidamien.github.io/how-to-do-cross-validation-when-upsampling-data.html">How to do cross-validation when upsampling data</a></li>
+<li><a href="https://www.marcoaltini.com/blog/dealing-with-imbalanced-data-undersampling-oversampling-and-proper-cross-validation">Dealing with Imbalanced Data: Undersampling, Oversampling and Proper Cross-validation</a></li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>sample(frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+new_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([df<span style="color:#f92672">.</span>loc[df[<span style="color:#e6db74">&#39;Class&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>],df<span style="color:#f92672">.</span>loc[df[<span style="color:#e6db74">&#39;Class&#39;</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>][:<span style="color:#ae81ff">492</span>]] )
+new_df <span style="color:#f92672">=</span> new_df<span style="color:#f92672">.</span>sample(frac<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)<span style="color:#f92672">.</span>reset_index()<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;index&#39;</span>,axis <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><h3 id="check-out-the-data-correlation">Check out the Data Correlation</h3>
+<p>I want to explore the features that are positively or negatively correlated to Class. In this case, although these some features are correlated, they will not be removed as the column names are hidden because of privacy issues.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">corr <span style="color:#f92672">=</span> new_df<span style="color:#f92672">.</span>corr()<span style="color:#f92672">.</span>sort_values(by<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Class&#39;</span>)
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Negative Relationship:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{}&#39;</span><span style="color:#f92672">.</span>format(corr[<span style="color:#e6db74">&#39;Class&#39;</span>]<span style="color:#f92672">.</span>iloc[:<span style="color:#ae81ff">5</span>]))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Positive Relationship:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{}&#39;</span><span style="color:#f92672">.</span>format(corr[<span style="color:#e6db74">&#39;Class&#39;</span>]<span style="color:#f92672">.</span>tail(<span style="color:#ae81ff">5</span>)))
+</code></pre></div><pre><code>Negative Relationship:
+V14   -0.746833
+V12   -0.683527
+V10   -0.629472
+V16   -0.602864
+V9    -0.565214
+Name: Class, dtype: float64
+Positive Relationship:
+V19      0.253494
+V2       0.476505
+V11      0.689498
+V4       0.705101
+Class    1.000000
+Name: Class, dtype: float64
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f854acc13d0&gt;
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">pos_neg_dict <span style="color:#f92672">=</span> {
+    <span style="color:#e6db74">&#39;Positive Correlation&#39;</span>: [<span style="color:#e6db74">&#39;V4&#39;</span>,<span style="color:#e6db74">&#39;V11&#39;</span>,<span style="color:#e6db74">&#39;V2&#39;</span>,<span style="color:#e6db74">&#39;V19&#39;</span>],
+    <span style="color:#e6db74">&#39;Negative Correlation&#39;</span> : [<span style="color:#e6db74">&#39;V12&#39;</span>,<span style="color:#e6db74">&#39;V14&#39;</span>,<span style="color:#e6db74">&#39;V16&#39;</span>,<span style="color:#e6db74">&#39;V9&#39;</span>,<span style="color:#e6db74">&#39;V10&#39;</span>]
+}
+<span style="color:#66d9ef">for</span> corr, ls <span style="color:#f92672">in</span> pos_neg_dict<span style="color:#f92672">.</span>items():
+    fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(ncols<span style="color:#f92672">=</span>len(ls), figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">8</span>))
+    <span style="color:#66d9ef">for</span> i, column <span style="color:#f92672">in</span> enumerate(ls):
+        plot <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>boxplot(x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Class&#39;</span>, y<span style="color:#f92672">=</span>column, data<span style="color:#f92672">=</span>new_df, ax<span style="color:#f92672">=</span>ax[i])<span style="color:#f92672">.</span>set_title(corr <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">+</span> column <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; vs Class&#39;</span>)
+    plt<span style="color:#f92672">.</span>show()
+</code></pre></div><p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_25_0.png" alt="png">
+<img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_25_1.png" alt="png"></p>
+<h4 id="positive-relationship-with-class-v2v4v11v19">Positive Relationship with &lsquo;Class&rsquo;: V2,V4,V11,V19</h4>
+<p>The higher the value, the larger to chance to be a fraud transaction.</p>
+<h4 id="negative-relationship-with-class-v12-v14-v16-v17-v10-v3">Negative Relationship with &lsquo;Class&rsquo;: V12, V14, V16, V17, V10, V3</h4>
+<p>The lower the value, the larger to chance to be a fraud transaction.</p>
+<h5 id="remarks-2">Remarks</h5>
+<p>As the feature names are unknown, I decided to leave them untouched.</p>
+<h3 id="split-the-data">Split the Data</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> new_df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;Class&#39;</span>,axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+y <span style="color:#f92672">=</span> new_df[<span style="color:#e6db74">&#39;Class&#39;</span>]
+x_train, x_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(x,y, test_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>, random_state<span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>)
+</code></pre></div><h4 id="classifiers">Classifiers</h4>
+<p>I am going to try out the below algorithms:</p>
+<ul>
+<li>Logistic regression</li>
+<li>K-Nearest neighbors</li>
+<li>Support Vector Classifier</li>
+<li>Random Forest</li>
+<li>AdaBoost</li>
+<li>Xgboost</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">classifiers <span style="color:#f92672">=</span> [
+    (<span style="color:#e6db74">&#39;logisticregression&#39;</span>, LogisticRegression(),
+     {<span style="color:#e6db74">&#39;penalty&#39;</span>: [<span style="color:#e6db74">&#39;l1&#39;</span>,<span style="color:#e6db74">&#39;l2&#39;</span>], <span style="color:#e6db74">&#39;C&#39;</span>:[<span style="color:#ae81ff">0.001</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">1000</span>]}),
+    (<span style="color:#e6db74">&#39;randomforestclassifier&#39;</span>,RandomForestClassifier(),
+    {<span style="color:#e6db74">&#39;n_estimators&#39;</span>:[<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">50</span>],<span style="color:#e6db74">&#39;max_depth&#39;</span>: list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>))}),
+    (<span style="color:#e6db74">&#39;adaboostclassifier&#39;</span>,AdaBoostClassifier(), {<span style="color:#e6db74">&#39;n_estimators&#39;</span>:[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">60</span>]}),
+     (<span style="color:#e6db74">&#39;svc&#39;</span>,SVC(),
+     {<span style="color:#e6db74">&#39;C&#39;</span>:[<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.7</span>,<span style="color:#ae81ff">0.9</span>,<span style="color:#ae81ff">1</span>],<span style="color:#e6db74">&#39;kernel&#39;</span>:[<span style="color:#e6db74">&#39;linear&#39;</span>, <span style="color:#e6db74">&#39;poly&#39;</span>, <span style="color:#e6db74">&#39;rbf&#39;</span>, <span style="color:#e6db74">&#39;sigmoid&#39;</span>],<span style="color:#e6db74">&#39;probability&#39;</span>:[True]}),
+    (<span style="color:#e6db74">&#39;xgbclassifier&#39;</span>, XGBClassifier(),{<span style="color:#e6db74">&#39;max_depth&#39;</span>:list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>)),<span style="color:#e6db74">&#39;gamma&#39;</span>:[<span style="color:#ae81ff">0.001</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">1</span>]}),
+    (<span style="color:#e6db74">&#39;kneighborsclassifier&#39;</span>, KNeighborsClassifier(), 
+     {<span style="color:#e6db74">&#39;n_neighbors&#39;</span>: list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">2</span>)), <span style="color:#e6db74">&#39;algorithm&#39;</span>:[<span style="color:#e6db74">&#39;ball_tree&#39;</span>,<span style="color:#e6db74">&#39;kd_tree&#39;</span>,<span style="color:#e6db74">&#39;brute&#39;</span>]}),
+]
+      
+</code></pre></div><h3 id="hyperparameter-tuning">Hyperparameter Tuning</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">best <span style="color:#f92672">=</span> {}
+<span style="color:#66d9ef">for</span> name, model, param <span style="color:#f92672">in</span> classifiers:
+    grid_cv <span style="color:#f92672">=</span> RandomizedSearchCV(model,param,cv<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,refit<span style="color:#f92672">=</span>True)
+    grid_cv<span style="color:#f92672">.</span>fit(x_train,y_train)
+    y_pred <span style="color:#f92672">=</span> grid_cv<span style="color:#f92672">.</span>predict(x_test)
+    test_accuracy <span style="color:#f92672">=</span> accuracy_score(y_test,y_pred)
+    best[name] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Model&#39;</span>: model,<span style="color:#e6db74">&#39;Best Training Score&#39;</span>: grid_cv<span style="color:#f92672">.</span>best_score_, <span style="color:#e6db74">&#39;Testing Score&#39;</span>: test_accuracy,<span style="color:#e6db74">&#39;Best Estimator&#39;</span>: grid_cv<span style="color:#f92672">.</span>best_estimator_}
+    
+</code></pre></div><pre><code>{'logisticregression': {'Model': LogisticRegression(),
+  'Best Training Score': 0.9428270042194093,
+  'Testing Score': 0.9441624365482234,
+  'Best Estimator': LogisticRegression(C=0.1)},
+ 'randomforestclassifier': {'Model': RandomForestClassifier(),
+  'Best Training Score': 0.9313534566699124,
+  'Testing Score': 0.9390862944162437,
+  'Best Estimator': RandomForestClassifier(max_depth=4, n_estimators=50)},
+ 'adaboostclassifier': {'Model': AdaBoostClassifier(),
+  'Best Training Score': 0.9377474845829277,
+  'Testing Score': 0.9187817258883249,
+  'Best Estimator': AdaBoostClassifier(n_estimators=40)},
+ 'svc': {'Model': SVC(),
+  'Best Training Score': 0.9402953586497891,
+  'Testing Score': 0.9441624365482234,
+  'Best Estimator': SVC(C=0.5, kernel='linear', probability=True)},
+ 'xgbclassifier': {'Model': XGBClassifier(),
+  'Best Training Score': 0.9453911067835119,
+  'Testing Score': 0.9390862944162437,
+  'Best Estimator': XGBClassifier(gamma=1)},
+ 'kneighborsclassifier': {'Model': KNeighborsClassifier(),
+  'Best Training Score': 0.9415124959428758,
+  'Testing Score': 0.949238578680203,
+  'Best Estimator': KNeighborsClassifier(algorithm='kd_tree', n_neighbors=6)}}
+</code></pre>
+<h3 id="box-plot">Box Plot</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">results <span style="color:#f92672">=</span> {}
+<span style="color:#66d9ef">for</span>  i, name <span style="color:#f92672">in</span> list(zip(list(range(len(best))),best<span style="color:#f92672">.</span>items())):
+    kfold <span style="color:#f92672">=</span> KFold(n_splits<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+    cv_score <span style="color:#f92672">=</span> cross_val_score(name[<span style="color:#ae81ff">1</span>][<span style="color:#e6db74">&#39;Best Estimator&#39;</span>], x_train,y_train,cv<span style="color:#f92672">=</span>kfold,scoring<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;accuracy&#39;</span>)
+    results[name[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> cv_score
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Average Score of {name[0]}: {cv_score.mean():.4f}&#39;</span>)
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;Standard Deviation {name[0]} : {cv_score.std():.4f}&#39;</span>)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;*&#39;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>)
+plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">8</span>))
+plt<span style="color:#f92672">.</span>boxplot(list(results<span style="color:#f92672">.</span>values()), labels<span style="color:#f92672">=</span>list(results<span style="color:#f92672">.</span>keys()))
+plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Model Comparison&#39;</span>)
+plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Model&#39;</span>)
+plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Accuracy&#39;</span>)
+plt<span style="color:#f92672">.</span>grid()
+plt<span style="color:#f92672">.</span>show()
+
+</code></pre></div><pre><code>Average Score of logisticregression: 0.9441
+Standard Deviation logisticregression : 0.0108
+************************************************************
+Average Score of randomforestclassifier: 0.9276
+Standard Deviation randomforestclassifier : 0.0189
+************************************************************
+Average Score of adaboostclassifier: 0.9365
+Standard Deviation adaboostclassifier : 0.0191
+************************************************************
+Average Score of svc: 0.9416
+Standard Deviation svc : 0.0193
+************************************************************
+Average Score of xgbclassifier: 0.9416
+Standard Deviation xgbclassifier : 0.0184
+************************************************************
+Average Score of kneighborsclassifier: 0.9403
+Standard Deviation kneighborsclassifier : 0.0153
+************************************************************
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_36_1.png" alt="png"></p>
+<h3 id="roc-curve--pr-curve">ROC Curve &amp; PR Curve</h3>
+<p>As I undersampled the data in the wrong way, the fraud and Not Fraud Data ratio are in 1:1. So in this case, I should evaluate the model using ROC curve.</p>
+<h4 id="reference-1">Reference</h4>
+<p><a href="https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-classification-in-python/">How to Use ROC Curves and Precision-Recall Curves for Classification in Python</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span>  i, name <span style="color:#f92672">in</span> list(zip(list(range(len(best))),best<span style="color:#f92672">.</span>items())):
+    model <span style="color:#f92672">=</span> name[<span style="color:#ae81ff">1</span>][<span style="color:#e6db74">&#39;Best Estimator&#39;</span>]<span style="color:#f92672">.</span>fit(x_train,y_train)
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{name[0]}- Training Data:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{classification_report(y_train,model.predict(x_train))}&#39;</span>)
+    <span style="color:#66d9ef">print</span>(f<span style="color:#e6db74">&#39;{name[0]}- Testing Data:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{classification_report(y_test,model.predict(x_test))}&#39;</span>)
+    proba <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>predict_proba(x_test)[:,<span style="color:#ae81ff">1</span>]
+    fpr, tpr, threshold <span style="color:#f92672">=</span> roc_curve(y_test,proba)
+    roc_auc <span style="color:#f92672">=</span> metrics<span style="color:#f92672">.</span>auc(fpr, tpr)
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">8</span>))
+    plt<span style="color:#f92672">.</span>title(f<span style="color:#e6db74">&#39;ROC Curve - {name[0]}&#39;</span>)
+    plt<span style="color:#f92672">.</span>plot(fpr, tpr, <span style="color:#e6db74">&#39;b&#39;</span>, label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;AUC = </span><span style="color:#e6db74">%0.4f</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> roc_auc)
+    plt<span style="color:#f92672">.</span>legend(loc <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;lower right&#39;</span>)
+    plt<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>],<span style="color:#e6db74">&#39;r--&#39;</span>)
+    plt<span style="color:#f92672">.</span>xlim([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>])
+    plt<span style="color:#f92672">.</span>ylim([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>])
+    plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;True Positive Rate&#39;</span>)
+    plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;False Positive Rate&#39;</span>)
+    plt<span style="color:#f92672">.</span>show()
+
+</code></pre></div><pre><code>logisticregression- Training Data:
+              precision    recall  f1-score   support
+
+           0       0.93      0.99      0.96       405
+           1       0.99      0.92      0.95       382
+
+    accuracy                           0.95       787
+   macro avg       0.96      0.95      0.95       787
+weighted avg       0.96      0.95      0.95       787
+
+logisticregression- Testing Data:
+              precision    recall  f1-score   support
+
+           0       0.90      0.98      0.94        87
+           1       0.98      0.92      0.95       110
+
+    accuracy                           0.94       197
+   macro avg       0.94      0.95      0.94       197
+weighted avg       0.95      0.94      0.94       197
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_38_1.png" alt="png"></p>
+<pre><code>randomforestclassifier- Training Data:
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95       405
+           1       1.00      0.88      0.94       382
+
+    accuracy                           0.94       787
+   macro avg       0.95      0.94      0.94       787
+weighted avg       0.95      0.94      0.94       787
+
+randomforestclassifier- Testing Data:
+              precision    recall  f1-score   support
+
+           0       0.88      1.00      0.94        87
+           1       1.00      0.89      0.94       110
+
+    accuracy                           0.94       197
+   macro avg       0.94      0.95      0.94       197
+weighted avg       0.95      0.94      0.94       197
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_38_3.png" alt="png"></p>
+<pre><code>adaboostclassifier- Training Data:
+              precision    recall  f1-score   support
+
+           0       0.98      1.00      0.99       405
+           1       0.99      0.98      0.99       382
+
+    accuracy                           0.99       787
+   macro avg       0.99      0.99      0.99       787
+weighted avg       0.99      0.99      0.99       787
+
+adaboostclassifier- Testing Data:
+              precision    recall  f1-score   support
+
+           0       0.87      0.95      0.91        87
+           1       0.96      0.89      0.92       110
+
+    accuracy                           0.92       197
+   macro avg       0.92      0.92      0.92       197
+weighted avg       0.92      0.92      0.92       197
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_38_5.png" alt="png"></p>
+<pre><code>svc- Training Data:
+              precision    recall  f1-score   support
+
+           0       0.93      0.99      0.96       405
+           1       0.99      0.92      0.95       382
+
+    accuracy                           0.95       787
+   macro avg       0.96      0.95      0.95       787
+weighted avg       0.96      0.95      0.95       787
+
+svc- Testing Data:
+              precision    recall  f1-score   support
+
+           0       0.90      0.98      0.94        87
+           1       0.98      0.92      0.95       110
+
+    accuracy                           0.94       197
+   macro avg       0.94      0.95      0.94       197
+weighted avg       0.95      0.94      0.94       197
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_38_7.png" alt="png"></p>
+<pre><code>xgbclassifier- Training Data:
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      1.00       405
+           1       1.00      0.99      1.00       382
+
+    accuracy                           1.00       787
+   macro avg       1.00      1.00      1.00       787
+weighted avg       1.00      1.00      1.00       787
+
+xgbclassifier- Testing Data:
+              precision    recall  f1-score   support
+
+           0       0.90      0.97      0.93        87
+           1       0.97      0.92      0.94       110
+
+    accuracy                           0.94       197
+   macro avg       0.94      0.94      0.94       197
+weighted avg       0.94      0.94      0.94       197
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_38_9.png" alt="png"></p>
+<pre><code>kneighborsclassifier- Training Data:
+              precision    recall  f1-score   support
+
+           0       0.91      1.00      0.95       405
+           1       0.99      0.90      0.94       382
+
+    accuracy                           0.95       787
+   macro avg       0.95      0.95      0.95       787
+weighted avg       0.95      0.95      0.95       787
+
+kneighborsclassifier- Testing Data:
+              precision    recall  f1-score   support
+
+           0       0.90      1.00      0.95        87
+           1       1.00      0.91      0.95       110
+
+    accuracy                           0.95       197
+   macro avg       0.95      0.95      0.95       197
+weighted avg       0.95      0.95      0.95       197
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_38_11.png" alt="png"></p>
+<h3 id="summary-for--method-one">Summary for  Method One</h3>
+<p>Because of data leakage from training set to testing set, overfitting is resulted using undersampling technique before cross-validation. Among all models, LogidticRegression, AdaBoostClassifier and Support Vector Classifier seem to have the highest accuracy. But the accuracy sounds too good to be true.</p>
+<p>In the coming steps, I am going to try out undersampling techniques during cross validation to see if i can get a higher accuracy score.</p>
+<h1 id="new-dataset-for-below-methods">New Dataset for below Methods</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">scaler <span style="color:#f92672">=</span> RobustScaler()
+df[<span style="color:#e6db74">&#39;Time&#39;</span>] <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>fit_transform(df[<span style="color:#e6db74">&#39;Time&#39;</span>]<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>reshape(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+df[<span style="color:#e6db74">&#39;Amount&#39;</span>] <span style="color:#f92672">=</span> scaler<span style="color:#f92672">.</span>fit_transform(df[<span style="color:#e6db74">&#39;Amount&#39;</span>]<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>reshape(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>))
+new_df <span style="color:#f92672">=</span> df
+</code></pre></div><h2 id="step-52----method-2-undersampling-within-folds">Step 5.2 -  Method 2: Undersampling within Folds</h2>
+<p>The right way to do undersampling is to do cross validation when undersampling data. In each fold, we will firstly undersample the majority class, then train data with the fold training set and finally cross-validate data using the test set in each fold.
+For the undersampling algorithm, I used NearMiss to undersample only the majority class this time as it helps tackle the issue of potential information loss. In NearMiss, the n neighbors of the majority class that are closest to minority class are selected.</p>
+<h3 id="reference-2">Reference</h3>
+<p><a href="https://towardsdatascience.com/sampling-techniques-for-extremely-imbalanced-data-part-i-under-sampling-a8dbc3d8d6d8">Using Under-Sampling Techniques for Extremely Imbalanced Data</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">classifiers <span style="color:#f92672">=</span> [
+    (<span style="color:#e6db74">&#39;logisticregression&#39;</span>, LogisticRegression(),
+     {<span style="color:#e6db74">&#39;penalty&#39;</span>: [<span style="color:#e6db74">&#39;l1&#39;</span>,<span style="color:#e6db74">&#39;l2&#39;</span>], <span style="color:#e6db74">&#39;C&#39;</span>:[<span style="color:#ae81ff">0.001</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">1000</span>]}),
+    (<span style="color:#e6db74">&#39;randomforestclassifier&#39;</span>,RandomForestClassifier(),
+    {<span style="color:#e6db74">&#39;n_estimators&#39;</span>:[<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">50</span>],<span style="color:#e6db74">&#39;max_depth&#39;</span>: list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>))}),
+    (<span style="color:#e6db74">&#39;adaboostclassifier&#39;</span>,AdaBoostClassifier(), {<span style="color:#e6db74">&#39;n_estimators&#39;</span>:[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">60</span>]}),
+     (<span style="color:#e6db74">&#39;svc&#39;</span>,SVC(),
+     {<span style="color:#e6db74">&#39;C&#39;</span>:[<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">0.7</span>,<span style="color:#ae81ff">0.9</span>,<span style="color:#ae81ff">1</span>],<span style="color:#e6db74">&#39;kernel&#39;</span>:[<span style="color:#e6db74">&#39;linear&#39;</span>, <span style="color:#e6db74">&#39;poly&#39;</span>, <span style="color:#e6db74">&#39;rbf&#39;</span>, <span style="color:#e6db74">&#39;sigmoid&#39;</span>],<span style="color:#e6db74">&#39;probability&#39;</span>:[True]}),
+    (<span style="color:#e6db74">&#39;xgbclassifier&#39;</span>, XGBClassifier(),{<span style="color:#e6db74">&#39;max_depth&#39;</span>:list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>)),<span style="color:#e6db74">&#39;gamma&#39;</span>:[<span style="color:#ae81ff">0.001</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">1</span>]}),
+    (<span style="color:#e6db74">&#39;kneighborsclassifier&#39;</span>, KNeighborsClassifier(), 
+     {<span style="color:#e6db74">&#39;n_neighbors&#39;</span>: list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">2</span>)), <span style="color:#e6db74">&#39;algorithm&#39;</span>:[<span style="color:#e6db74">&#39;ball_tree&#39;</span>,<span style="color:#e6db74">&#39;kd_tree&#39;</span>,<span style="color:#e6db74">&#39;brute&#39;</span>]}),
+]
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> new_df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;Class&#39;</span>,axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+y <span style="color:#f92672">=</span> new_df[<span style="color:#e6db74">&#39;Class&#39;</span>]
+x_train, x_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(x,y,test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>,random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</code></pre></div><h3 id="find-the-best-parameters-for-each-model">Find the best parameters for each model</h3>
+<p>The best parameters are obtained through cross-validation when undersampling data. In the GridSearchCV, a pipeine is added in order to undersample the fold data and fit model with fold data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">kf <span style="color:#f92672">=</span> KFold(n_splits<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, shuffle<span style="color:#f92672">=</span>False)
+model_dict <span style="color:#f92672">=</span> {}
+<span style="color:#66d9ef">for</span> i, model <span style="color:#f92672">in</span> zip(list(range(len(classifiers))), classifiers):
+    <span style="color:#66d9ef">print</span>(model[<span style="color:#ae81ff">0</span>])
+    imba_pipeline <span style="color:#f92672">=</span> make_pipeline(NearMiss(sampling_strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;majority&#39;</span>), model[<span style="color:#ae81ff">1</span>])
+    new_params <span style="color:#f92672">=</span> {model[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;__&#39;</span> <span style="color:#f92672">+</span> key : model[<span style="color:#ae81ff">2</span>][key] <span style="color:#66d9ef">for</span> key <span style="color:#f92672">in</span> model[<span style="color:#ae81ff">2</span>] }
+    grid_imba <span style="color:#f92672">=</span> GridSearchCV(imba_pipeline, param_grid<span style="color:#f92672">=</span>new_params, cv<span style="color:#f92672">=</span>kf, scoring<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;recall&#39;</span>,return_train_score<span style="color:#f92672">=</span>True)
+    grid_imba<span style="color:#f92672">.</span>fit(x_train,y_train)
+    model_dict[model[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Best param&#39;</span>: grid_imba<span style="color:#f92672">.</span>best_params_,
+                           <span style="color:#e6db74">&#39;Best estimator&#39;</span>: grid_imba<span style="color:#f92672">.</span>best_estimator_,
+                           <span style="color:#e6db74">&#39;Best training score&#39;</span> : grid_imba<span style="color:#f92672">.</span>best_score_,
+                           <span style="color:#e6db74">&#39;Model&#39;</span>: model[<span style="color:#ae81ff">1</span>],
+                           <span style="color:#e6db74">&#39;Best testing score&#39;</span>: recall_score(y_test,grid_imba<span style="color:#f92672">.</span>predict(x_test))}
+    <span style="color:#66d9ef">print</span>(model_dict[model[<span style="color:#ae81ff">0</span>]])
+    
+</code></pre></div><pre><code>logisticregression
+{'Best param': {'logisticregression__C': 1, 'logisticregression__penalty': 'l2'}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('logisticregression', LogisticRegression(C=1))]), 'Best training score': 0.9465527438334078, 'Model': LogisticRegression(), 'Best testing score': 0.9405940594059405}
+randomforestclassifier
+{'Best param': {'randomforestclassifier__max_depth': 4, 'randomforestclassifier__n_estimators': 50}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('randomforestclassifier',
+                 RandomForestClassifier(max_depth=4, n_estimators=50))]), 'Best training score': 0.9663854944519036, 'Model': RandomForestClassifier(), 'Best testing score': 0.9702970297029703}
+adaboostclassifier
+{'Best param': {'adaboostclassifier__n_estimators': 10}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('adaboostclassifier', AdaBoostClassifier(n_estimators=10))]), 'Best training score': 0.9586821481769241, 'Model': AdaBoostClassifier(), 'Best testing score': 1.0}
+svc
+{'Best param': {'svc__C': 0.5, 'svc__kernel': 'linear', 'svc__probability': True}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('svc', SVC(C=0.5, kernel='linear', probability=True))]), 'Best training score': 0.9514189238820697, 'Model': SVC(), 'Best testing score': 0.9306930693069307}
+xgbclassifier
+{'Best param': {'xgbclassifier__gamma': 0.001, 'xgbclassifier__max_depth': 4}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('xgbclassifier', XGBClassifier(gamma=0.001, max_depth=4))]), 'Best training score': 0.9664215402300417, 'Model': XGBClassifier(), 'Best testing score': 0.9702970297029703}
+kneighborsclassifier
+{'Best param': {'kneighborsclassifier__algorithm': 'ball_tree', 'kneighborsclassifier__n_neighbors': 2}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('kneighborsclassifier',
+                 KNeighborsClassifier(algorithm='ball_tree', n_neighbors=2))]), 'Best training score': 0.9150393436639321, 'Model': KNeighborsClassifier(), 'Best testing score': 0.9405940594059405}
+</code></pre>
+<h3 id="model-evaluation">Model Evaluation</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">kf <span style="color:#f92672">=</span> KFold(n_splits<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, shuffle<span style="color:#f92672">=</span>False)
+best_param_model <span style="color:#f92672">=</span> { i[<span style="color:#ae81ff">0</span>] : {} <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> classifiers}
+
+<span style="color:#66d9ef">for</span> i, model <span style="color:#f92672">in</span> zip(list(range(len(classifiers))), classifiers):
+    score <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;accuracy&#39;</span> : [],
+             <span style="color:#e6db74">&#39;precision&#39;</span> : [],
+             <span style="color:#e6db74">&#39;recall&#39;</span> : [],
+             <span style="color:#e6db74">&#39;f1&#39;</span> : []
+            }
+    <span style="color:#66d9ef">print</span>(model[<span style="color:#ae81ff">0</span>])
+    <span style="color:#75715e"># to get the accuracy, precision, recall, f1 score of each fold and append to score list</span>
+    <span style="color:#66d9ef">for</span> train_fold_index,val_fold_index <span style="color:#f92672">in</span> kf<span style="color:#f92672">.</span>split(x_train,y_train):
+        x_train_fold, y_train_fold <span style="color:#f92672">=</span> x_train<span style="color:#f92672">.</span>iloc[train_fold_index], y_train<span style="color:#f92672">.</span>iloc[train_fold_index]
+        x_val_fold, y_val_fold <span style="color:#f92672">=</span> x_train<span style="color:#f92672">.</span>iloc[val_fold_index], y_train<span style="color:#f92672">.</span>iloc[val_fold_index]
+        pipeline <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]
+        best_model <span style="color:#f92672">=</span> pipeline<span style="color:#f92672">.</span>fit(x_train_fold,y_train_fold)
+        
+        y_pred <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>named_steps[model[<span style="color:#ae81ff">0</span>]]<span style="color:#f92672">.</span>predict(x_val_fold)
+        
+        score[<span style="color:#e6db74">&#39;accuracy&#39;</span>]<span style="color:#f92672">.</span>append(pipeline<span style="color:#f92672">.</span>score(x_val_fold,y_val_fold))
+        score[<span style="color:#e6db74">&#39;precision&#39;</span>]<span style="color:#f92672">.</span>append(precision_score(y_val_fold, y_pred))
+        score[<span style="color:#e6db74">&#39;recall&#39;</span>]<span style="color:#f92672">.</span>append(recall_score(y_val_fold, y_pred))
+        score[<span style="color:#e6db74">&#39;f1&#39;</span>]<span style="color:#f92672">.</span>append(f1_score(y_val_fold,y_pred))
+        
+    <span style="color:#75715e"># to get the average score</span>
+    <span style="color:#66d9ef">for</span> key, ls <span style="color:#f92672">in</span> score<span style="color:#f92672">.</span>items():
+        best_param_model[model[<span style="color:#ae81ff">0</span>]][key] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(ls)
+        
+    <span style="color:#75715e"># Classification Report for Train data</span>
+    <span style="color:#66d9ef">print</span>(model_dict[model[<span style="color:#ae81ff">0</span>]])
+    train_prediction <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict(x_train)
+    test_prediction <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict(x_test)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Train Result:&#39;</span>)
+    <span style="color:#66d9ef">print</span>(classification_report(y_train,train_prediction))
+    <span style="color:#75715e"># Confusion Matrix for Train data</span>
+    metrics<span style="color:#f92672">.</span>plot_confusion_matrix(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_train, y_train)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Confusion Matrix on Training Data for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+    <span style="color:#75715e"># Classification Report for Test data</span>
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Test Result:&#39;</span>)
+    <span style="color:#66d9ef">print</span>(classification_report(y_test,test_prediction))
+     <span style="color:#75715e"># Confusion Matrix for Test data</span>
+    metrics<span style="color:#f92672">.</span>plot_confusion_matrix(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_test, y_test)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Confusion Matrix on Testing Data for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+   <span style="color:#75715e"># Precision-Recall Curve for test data</span>
+    probs <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict_proba(x_test)[:,<span style="color:#ae81ff">1</span>]
+    average_precision <span style="color:#f92672">=</span> metrics<span style="color:#f92672">.</span>average_precision_score(y_test,probs)
+    metrics<span style="color:#f92672">.</span>plot_precision_recall_curve(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_test,y_test)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Precision-Recall Curve for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+    
+        
+</code></pre></div><pre><code>logisticregression
+
+{'Best param': {'logisticregression__C': 1, 'logisticregression__penalty': 'l2'}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('logisticregression', LogisticRegression(C=1))]), 'Best training score': 0.9465527438334078, 'Model': LogisticRegression(), 'Best testing score': 0.9405940594059405}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.52      0.69    227454
+           1       0.00      0.96      0.01       391
+
+    accuracy                           0.52    227845
+   macro avg       0.50      0.74      0.35    227845
+weighted avg       1.00      0.52      0.69    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_3.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.53      0.69     56861
+           1       0.00      0.99      0.01       101
+
+    accuracy                           0.53     56962
+   macro avg       0.50      0.76      0.35     56962
+weighted avg       1.00      0.53      0.69     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_6.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_8.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+randomforestclassifier
+{'Best param': {'randomforestclassifier__max_depth': 4, 'randomforestclassifier__n_estimators': 50}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('randomforestclassifier',
+                 RandomForestClassifier(max_depth=4, n_estimators=50))]), 'Best training score': 0.9663854944519036, 'Model': RandomForestClassifier(), 'Best testing score': 0.9702970297029703}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.40      0.57    227454
+           1       0.00      0.97      0.01       391
+
+    accuracy                           0.40    227845
+   macro avg       0.50      0.68      0.29    227845
+weighted avg       1.00      0.40      0.57    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_11.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.40      0.57     56861
+           1       0.00      0.98      0.01       101
+
+    accuracy                           0.40     56962
+   macro avg       0.50      0.69      0.29     56962
+weighted avg       1.00      0.40      0.57     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_14.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_16.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+adaboostclassifier
+{'Best param': {'adaboostclassifier__n_estimators': 10}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('adaboostclassifier', AdaBoostClassifier(n_estimators=10))]), 'Best training score': 0.9586821481769241, 'Model': AdaBoostClassifier(), 'Best testing score': 1.0}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.35      0.52    227454
+           1       0.00      0.97      0.01       391
+
+    accuracy                           0.35    227845
+   macro avg       0.50      0.66      0.26    227845
+weighted avg       1.00      0.35      0.52    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_19.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.35      0.51     56861
+           1       0.00      0.97      0.01       101
+
+    accuracy                           0.35     56962
+   macro avg       0.50      0.66      0.26     56962
+weighted avg       1.00      0.35      0.51     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_22.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_24.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+svc
+{'Best param': {'svc__C': 0.5, 'svc__kernel': 'linear', 'svc__probability': True}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('svc', SVC(C=0.5, kernel='linear', probability=True))]), 'Best training score': 0.9514189238820697, 'Model': SVC(), 'Best testing score': 0.9306930693069307}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.53      0.70    227454
+           1       0.00      0.96      0.01       391
+
+    accuracy                           0.54    227845
+   macro avg       0.50      0.75      0.35    227845
+weighted avg       1.00      0.54      0.70    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_27.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.54      0.70     56861
+           1       0.00      0.98      0.01       101
+
+    accuracy                           0.54     56962
+   macro avg       0.50      0.76      0.35     56962
+weighted avg       1.00      0.54      0.70     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_30.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_32.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+xgbclassifier
+{'Best param': {'xgbclassifier__gamma': 0.001, 'xgbclassifier__max_depth': 4}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('xgbclassifier', XGBClassifier(gamma=0.001, max_depth=4))]), 'Best training score': 0.9664215402300417, 'Model': XGBClassifier(), 'Best testing score': 0.9702970297029703}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.27      0.43    227454
+           1       0.00      0.99      0.00       391
+
+    accuracy                           0.27    227845
+   macro avg       0.50      0.63      0.22    227845
+weighted avg       1.00      0.27      0.43    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_35.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.27      0.43     56861
+           1       0.00      0.99      0.00       101
+
+    accuracy                           0.27     56962
+   macro avg       0.50      0.63      0.22     56962
+weighted avg       1.00      0.27      0.43     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_38.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_40.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+kneighborsclassifier
+{'Best param': {'kneighborsclassifier__algorithm': 'ball_tree', 'kneighborsclassifier__n_neighbors': 2}, 'Best estimator': Pipeline(steps=[('nearmiss', NearMiss(sampling_strategy='majority')),
+                ('kneighborsclassifier',
+                 KNeighborsClassifier(algorithm='ball_tree', n_neighbors=2))]), 'Best training score': 0.9150393436639321, 'Model': KNeighborsClassifier(), 'Best testing score': 0.9405940594059405}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.82      0.90    227454
+           1       0.01      0.94      0.02       391
+
+    accuracy                           0.82    227845
+   macro avg       0.50      0.88      0.46    227845
+weighted avg       1.00      0.82      0.90    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_43.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.82      0.90     56861
+           1       0.01      0.96      0.02       101
+
+    accuracy                           0.82     56962
+   macro avg       0.50      0.89      0.46     56962
+weighted avg       1.00      0.82      0.90     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_46.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_49_48.png" alt="png"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">best_param_model
+</code></pre></div><pre><code>{'logisticregression': {'accuracy': 0.5326295597865448,
+  'precision': 0.0034664468560700657,
+  'recall': 0.9465527438334078,
+  'f1': 0.006907442948523482},
+ 'randomforestclassifier': {'accuracy': 0.210257444888477,
+  'precision': 0.0021635471611554085,
+  'recall': 0.958350163531214,
+  'f1': 0.004316858011532018},
+ 'adaboostclassifier': {'accuracy': 0.3059452033734987,
+  'precision': 0.0023755289650079212,
+  'recall': 0.9586821481769241,
+  'f1': 0.004739250489434222},
+ 'svc': {'accuracy': 0.49876868661315515,
+  'precision': 0.0033104075855579854,
+  'recall': 0.9514189238820697,
+  'f1': 0.006597244046397573},
+ 'xgbclassifier': {'accuracy': 0.18468726918615266,
+  'precision': 0.002047414919077626,
+  'recall': 0.9664215402300417,
+  'f1': 0.004086064585109592},
+ 'kneighborsclassifier': {'accuracy': 0.7717832701412917,
+  'precision': 0.007437679734291379,
+  'recall': 0.9150393436639321,
+  'f1': 0.014746352310070926}}
+</code></pre>
+<h3 id="method-2-summary">Method 2 Summary</h3>
+<p>As this dataset is highly imbalanced, instead of using ROC Curve, I used Precision-Recall Curve to measure the effectiveness of the models. Apart from AP score, I also looked into the f1 score.</p>
+<p>The f1 score is  too low. As there are too many false negatives, the models are too sensitive towards fraud. It will bring a lot of inconvenience to credit users as transactions are identified as fraud frequently.</p>
+<p>In the coming steps, I am going to try out over sampling techniques to see if i can get a higher average precision score using oversampling techniques.</p>
+<h2 id="step-53----method-3-oversampling-within-folds">Step 5.3 -  Method 3: Oversampling within Folds</h2>
+<p>I used SMOTE to oversample only the minoirity class (i.e. Fraud). Synthetic Minority Oversampling Technique (SMOTE) firstly identifies the feature vector and its nearest neighbor. After that,  it calculates the difference between the two identified points and then multiplies the difference with a random number between 0 and 1. A new point is finally identified on the line segment by adding the random number to the feature vector. The whole process is repeated until the number of data points of minority class equals to that of majority class.</p>
+<h4 id="reference-3">Reference</h4>
+<p><a href="https://machinelearningmastery.com/precision-recall-and-f-measure-for-imbalanced-classification/">How to Calculate Precision, Recall, and F-Measure for Imbalanced Classification</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> new_df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;Class&#39;</span>,axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+y <span style="color:#f92672">=</span> new_df[<span style="color:#e6db74">&#39;Class&#39;</span>]
+x_train, x_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(x,y,test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>,random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">classifiers <span style="color:#f92672">=</span> [
+    (<span style="color:#e6db74">&#39;logisticregression&#39;</span>, LogisticRegression(),
+     {<span style="color:#e6db74">&#39;penalty&#39;</span>: [<span style="color:#e6db74">&#39;l1&#39;</span>,<span style="color:#e6db74">&#39;l2&#39;</span>], <span style="color:#e6db74">&#39;C&#39;</span>:[<span style="color:#ae81ff">0.001</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">1000</span>]}),
+    (<span style="color:#e6db74">&#39;randomforestclassifier&#39;</span>,RandomForestClassifier(),
+    {<span style="color:#e6db74">&#39;n_estimators&#39;</span>:[<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">50</span>],<span style="color:#e6db74">&#39;max_depth&#39;</span>: list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>))}),
+    (<span style="color:#e6db74">&#39;adaboostclassifier&#39;</span>,AdaBoostClassifier(), {<span style="color:#e6db74">&#39;n_estimators&#39;</span>:[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">60</span>]}),
+    (<span style="color:#e6db74">&#39;xgbclassifier&#39;</span>, XGBClassifier(),{<span style="color:#e6db74">&#39;max_depth&#39;</span>:list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>)),<span style="color:#e6db74">&#39;gamma&#39;</span>:[<span style="color:#ae81ff">0.001</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">1</span>]}),
+    (<span style="color:#e6db74">&#39;kneighborsclassifier&#39;</span>, KNeighborsClassifier(),
+     {<span style="color:#e6db74">&#39;n_neighbors&#39;</span>: list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">2</span>)), <span style="color:#e6db74">&#39;algorithm&#39;</span>:[<span style="color:#e6db74">&#39;ball_tree&#39;</span>,<span style="color:#e6db74">&#39;kd_tree&#39;</span>,<span style="color:#e6db74">&#39;brute&#39;</span>]}),
+    
+]
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">kf <span style="color:#f92672">=</span> KFold(n_splits<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, shuffle<span style="color:#f92672">=</span>False)
+model_dict <span style="color:#f92672">=</span> {}
+best_param_model <span style="color:#f92672">=</span> { i[<span style="color:#ae81ff">0</span>] : {} <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> classifiers}
+<span style="color:#66d9ef">for</span> i, model <span style="color:#f92672">in</span> zip(list(range(len(classifiers))), classifiers):
+    <span style="color:#66d9ef">print</span>(model[<span style="color:#ae81ff">0</span>])
+    imba_pipeline <span style="color:#f92672">=</span> make_pipeline(SMOTE(sampling_strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;minority&#39;</span>), model[<span style="color:#ae81ff">1</span>])
+    new_params <span style="color:#f92672">=</span> {model[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;__&#39;</span> <span style="color:#f92672">+</span> key : model[<span style="color:#ae81ff">2</span>][key] <span style="color:#66d9ef">for</span> key <span style="color:#f92672">in</span> model[<span style="color:#ae81ff">2</span>] }
+    grid_imba <span style="color:#f92672">=</span> RandomizedSearchCV(imba_pipeline,new_params, n_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, n_jobs<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+    grid_imba<span style="color:#f92672">.</span>fit(x_train,y_train)
+    model_dict[model[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Best param&#39;</span>: grid_imba<span style="color:#f92672">.</span>best_params_,
+                           <span style="color:#e6db74">&#39;Best estimator&#39;</span>: grid_imba<span style="color:#f92672">.</span>best_estimator_,
+                           <span style="color:#e6db74">&#39;Best training score&#39;</span> : grid_imba<span style="color:#f92672">.</span>best_score_,
+                           <span style="color:#e6db74">&#39;Model&#39;</span>: model[<span style="color:#ae81ff">1</span>],
+                           <span style="color:#e6db74">&#39;Best testing score&#39;</span>: recall_score(y_test,grid_imba<span style="color:#f92672">.</span>predict(x_test))}
+
+    score <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;accuracy&#39;</span> : [],
+             <span style="color:#e6db74">&#39;precision&#39;</span> : [],
+             <span style="color:#e6db74">&#39;recall&#39;</span> : [],
+             <span style="color:#e6db74">&#39;f1&#39;</span> : []
+            }
+    <span style="color:#66d9ef">for</span> train_fold_index,val_fold_index <span style="color:#f92672">in</span> kf<span style="color:#f92672">.</span>split(x_train,y_train):
+        x_train_fold, y_train_fold <span style="color:#f92672">=</span> x_train<span style="color:#f92672">.</span>iloc[train_fold_index], y_train<span style="color:#f92672">.</span>iloc[train_fold_index]
+        x_val_fold, y_val_fold <span style="color:#f92672">=</span> x_train<span style="color:#f92672">.</span>iloc[val_fold_index], y_train<span style="color:#f92672">.</span>iloc[val_fold_index]
+        pipeline <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]
+        pipeline<span style="color:#f92672">.</span>fit(x_train_fold,y_train_fold)
+        
+        y_pred <span style="color:#f92672">=</span> pipeline<span style="color:#f92672">.</span>predict(x_val_fold)
+        
+        score[<span style="color:#e6db74">&#39;accuracy&#39;</span>]<span style="color:#f92672">.</span>append(pipeline<span style="color:#f92672">.</span>score(x_val_fold,y_val_fold))
+        score[<span style="color:#e6db74">&#39;precision&#39;</span>]<span style="color:#f92672">.</span>append(precision_score(y_val_fold, y_pred))
+        score[<span style="color:#e6db74">&#39;recall&#39;</span>]<span style="color:#f92672">.</span>append(recall_score(y_val_fold, y_pred))
+        score[<span style="color:#e6db74">&#39;f1&#39;</span>]<span style="color:#f92672">.</span>append(f1_score(y_val_fold,y_pred))
+   
+    <span style="color:#66d9ef">for</span> key, ls <span style="color:#f92672">in</span> score<span style="color:#f92672">.</span>items():
+        best_param_model[model[<span style="color:#ae81ff">0</span>]][key] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(ls)
+    
+    <span style="color:#66d9ef">print</span>(model_dict[model[<span style="color:#ae81ff">0</span>]])
+    train_prediction <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict(x_train)
+    test_prediction <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict(x_test)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Train Result:&#39;</span>)
+    <span style="color:#66d9ef">print</span>(classification_report(y_train,train_prediction))
+    
+    metrics<span style="color:#f92672">.</span>plot_confusion_matrix(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_train, y_train)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Confusion Matrix on Training Data for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+    
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Test Result:&#39;</span>)
+    <span style="color:#66d9ef">print</span>(classification_report(y_test,test_prediction))
+    metrics<span style="color:#f92672">.</span>plot_confusion_matrix(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_test, y_test)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Confusion Matrix on Testing Data for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+    
+    probs <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict_proba(x_test)[:,<span style="color:#ae81ff">1</span>]
+    average_precision <span style="color:#f92672">=</span> metrics<span style="color:#f92672">.</span>average_precision_score(y_test,probs)
+    metrics<span style="color:#f92672">.</span>plot_precision_recall_curve(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_test,y_test)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Precision-Recall Curve for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+</code></pre></div><pre><code>logisticregression
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+{'Best param': {'logisticregression__penalty': 'l2', 'logisticregression__C': 10}, 'Best estimator': Pipeline(steps=[('smote', SMOTE(sampling_strategy='minority')),
+                ('logisticregression', LogisticRegression(C=10))]), 'Best training score': 0.9728104632535276, 'Model': LogisticRegression(), 'Best testing score': 0.9405940594059405}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.99    227454
+           1       0.05      0.91      0.10       391
+
+    accuracy                           0.97    227845
+   macro avg       0.53      0.94      0.54    227845
+weighted avg       1.00      0.97      0.98    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_3.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.97      0.99     56861
+           1       0.06      0.94      0.10       101
+
+    accuracy                           0.97     56962
+   macro avg       0.53      0.96      0.54     56962
+weighted avg       1.00      0.97      0.98     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_6.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_8.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+randomforestclassifier
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:  1.2min finished
+
+
+{'Best param': {'randomforestclassifier__n_estimators': 40, 'randomforestclassifier__max_depth': 2}, 'Best estimator': Pipeline(steps=[('smote', SMOTE(sampling_strategy='minority')),
+                ('randomforestclassifier',
+                 RandomForestClassifier(max_depth=2, n_estimators=40))]), 'Best training score': 0.9959753341087142, 'Model': RandomForestClassifier(), 'Best testing score': 0.900990099009901}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    227454
+           1       0.37      0.84      0.52       391
+
+    accuracy                           1.00    227845
+   macro avg       0.69      0.92      0.76    227845
+weighted avg       1.00      1.00      1.00    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_13.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     56861
+           1       0.40      0.88      0.55       101
+
+    accuracy                           1.00     56962
+   macro avg       0.70      0.94      0.78     56962
+weighted avg       1.00      1.00      1.00     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_16.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_18.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+adaboostclassifier
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:  2.7min finished
+
+
+{'Best param': {'adaboostclassifier__n_estimators': 60}, 'Best estimator': Pipeline(steps=[('smote', SMOTE(sampling_strategy='minority')),
+                ('adaboostclassifier', AdaBoostClassifier(n_estimators=60))]), 'Best training score': 0.9813513572823629, 'Model': AdaBoostClassifier(), 'Best testing score': 0.8910891089108911}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.98      0.99    227454
+           1       0.08      0.93      0.14       391
+
+    accuracy                           0.98    227845
+   macro avg       0.54      0.96      0.57    227845
+weighted avg       1.00      0.98      0.99    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_23.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.98      0.99     56861
+           1       0.07      0.87      0.13       101
+
+    accuracy                           0.98     56962
+   macro avg       0.54      0.93      0.56     56962
+weighted avg       1.00      0.98      0.99     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_26.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_28.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+xgbclassifier
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:  4.8min finished
+
+
+{'Best param': {'xgbclassifier__max_depth': 3, 'xgbclassifier__gamma': 1}, 'Best estimator': Pipeline(steps=[('smote', SMOTE(sampling_strategy='minority')),
+                ('xgbclassifier', XGBClassifier(gamma=1))]), 'Best training score': 0.9886019004147556, 'Model': XGBClassifier(), 'Best testing score': 0.900990099009901}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.99      1.00    227454
+           1       0.15      0.95      0.26       391
+
+    accuracy                           0.99    227845
+   macro avg       0.58      0.97      0.63    227845
+weighted avg       1.00      0.99      0.99    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_33.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      0.99      1.00     56861
+           1       0.15      0.89      0.25       101
+
+    accuracy                           0.99     56962
+   macro avg       0.57      0.94      0.63     56962
+weighted avg       1.00      0.99      0.99     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_36.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_38.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+kneighborsclassifier
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed: 26.0min finished
+
+
+{'Best param': {'kneighborsclassifier__n_neighbors': 2, 'kneighborsclassifier__algorithm': 'ball_tree'}, 'Best estimator': Pipeline(steps=[('smote', SMOTE(sampling_strategy='minority')),
+                ('kneighborsclassifier',
+                 KNeighborsClassifier(algorithm='ball_tree', n_neighbors=2))]), 'Best training score': 0.9990651539423732, 'Model': KNeighborsClassifier(), 'Best testing score': 0.8712871287128713}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    227454
+           1       0.87      0.94      0.90       391
+
+    accuracy                           1.00    227845
+   macro avg       0.93      0.97      0.95    227845
+weighted avg       1.00      1.00      1.00    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_43.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     56861
+           1       0.70      0.86      0.77       101
+
+    accuracy                           1.00     56962
+   macro avg       0.85      0.93      0.88     56962
+weighted avg       1.00      1.00      1.00     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_46.png" alt="png">
+&lt;Figure size 864x864 with 0 Axes&gt;
+<img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_55_48.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<h3 id="method-3-summary">Method 3 Summary</h3>
+<p>With same result as method 2, the model has low precision score. The positive recall score is increased at the expense of more misclassified results. As recall score focuses on minimising false negatives (i.e. Non-Fraud transactions are identified as Fraud), it is acceptable that the precision score is low in this case.</p>
+<p>Among these models, XGBoostClassifier seems to have the best score although the precision score is still low. Less than 1% of non-fraud transactions will be identified as fraud-transactions while 10% of fraud transactions cannot be spotted by this model.</p>
+<p>Next time, instead of using sampling_strategy='minority&rsquo;, maybe I can work on Smote ratios to fine tune the class weights so that I can achieve better precision score and further reduce false positive.</p>
+<h5 id="remarks-3">Remarks</h5>
+<p>I decided to skip the training for SVC in order  to save some time. To speed up the cross validation process, I used RandomizedSearchCV to find the best parameter for each model.</p>
+<h5 id="reference-4">Reference</h5>
+<p><a href="https://machinelearningmastery.com/roc-curves-and-precision-recall-curves-for-imbalanced-classification/">ROC Curves and Precision-Recall Curves for Imbalanced Classification</a></p>
+<h2 id="step-54----method-4-oversampling-using-model-class-weight">Step 5.4 -  Method 4: Oversampling using Model Class Weight</h2>
+<p>Application of class weight is simple. It add bias to the model in order to enhance the predictions of higher weighted class over the one with lower weight.</p>
+<h4 id="reference-5">Reference</h4>
+<p><a href="https://datascience.stackexchange.com/questions/52627/why-class-weight-is-outperforming-oversampling">Why class weight is outperforming oversampling?</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x <span style="color:#f92672">=</span> new_df<span style="color:#f92672">.</span>drop(<span style="color:#e6db74">&#39;Class&#39;</span>,axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+y <span style="color:#f92672">=</span> new_df[<span style="color:#e6db74">&#39;Class&#39;</span>]
+x_train, x_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(x,y,test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>,random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">classifiers <span style="color:#f92672">=</span> [
+    (<span style="color:#e6db74">&#39;logisticregression&#39;</span>, LogisticRegression(),
+     {<span style="color:#e6db74">&#39;penalty&#39;</span>: [<span style="color:#e6db74">&#39;l1&#39;</span>,<span style="color:#e6db74">&#39;l2&#39;</span>], <span style="color:#e6db74">&#39;C&#39;</span>:[<span style="color:#ae81ff">0.001</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">1000</span>], <span style="color:#e6db74">&#39;class_weight&#39;</span>: [{<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1</span>},{<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">5</span>},{<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">10</span>},{<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">100</span>}]}),
+    (<span style="color:#e6db74">&#39;randomforestclassifier&#39;</span>,RandomForestClassifier(),
+    {<span style="color:#e6db74">&#39;n_estimators&#39;</span>:[<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">50</span>],<span style="color:#e6db74">&#39;max_depth&#39;</span>: list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>)),<span style="color:#e6db74">&#39;class_weight&#39;</span>: [{<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1</span>},{<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">5</span>},{<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">10</span>},{<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">100</span>}]}),
+    (<span style="color:#e6db74">&#39;adaboostclassifier&#39;</span>,AdaBoostClassifier(), {<span style="color:#e6db74">&#39;n_estimators&#39;</span>:[<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">30</span>,<span style="color:#ae81ff">40</span>,<span style="color:#ae81ff">50</span>,<span style="color:#ae81ff">60</span>]}),
+    (<span style="color:#e6db74">&#39;xgbclassifier&#39;</span>, XGBClassifier(),{<span style="color:#e6db74">&#39;max_depth&#39;</span>:list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">5</span>)),<span style="color:#e6db74">&#39;gamma&#39;</span>:[<span style="color:#ae81ff">0.001</span>,<span style="color:#ae81ff">0.01</span>,<span style="color:#ae81ff">0.1</span>,<span style="color:#ae81ff">1</span>]}),
+    (<span style="color:#e6db74">&#39;kneighborsclassifier&#39;</span>, KNeighborsClassifier(), 
+     {<span style="color:#e6db74">&#39;n_neighbors&#39;</span>: list(range(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">2</span>)), <span style="color:#e6db74">&#39;algorithm&#39;</span>:[<span style="color:#e6db74">&#39;ball_tree&#39;</span>,<span style="color:#e6db74">&#39;kd_tree&#39;</span>,<span style="color:#e6db74">&#39;brute&#39;</span>]})
+]
+      
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">kf <span style="color:#f92672">=</span> KFold(n_splits<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, shuffle<span style="color:#f92672">=</span>False)
+model_dict <span style="color:#f92672">=</span> {}
+best_param_model <span style="color:#f92672">=</span> { i[<span style="color:#ae81ff">0</span>] : {} <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> classifiers}
+<span style="color:#66d9ef">for</span> i, model <span style="color:#f92672">in</span> zip(list(range(len(classifiers))), classifiers):
+    <span style="color:#66d9ef">print</span>(model[<span style="color:#ae81ff">0</span>])
+    new_params <span style="color:#f92672">=</span> { key : model[<span style="color:#ae81ff">2</span>][key] <span style="color:#66d9ef">for</span> key <span style="color:#f92672">in</span> model[<span style="color:#ae81ff">2</span>] }
+    grid_imba <span style="color:#f92672">=</span> RandomizedSearchCV(model[<span style="color:#ae81ff">1</span>],new_params, n_iter<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>, verbose<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, n_jobs<span style="color:#f92672">=-</span><span style="color:#ae81ff">1</span>)
+    <span style="color:#75715e">#grid_imba = GridSearchCV(model[1], param_grid=new_params, cv=kf,return_train_score=True)</span>
+    grid_imba<span style="color:#f92672">.</span>fit(x_train,y_train)
+    model_dict[model[<span style="color:#ae81ff">0</span>]] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Best param&#39;</span>: grid_imba<span style="color:#f92672">.</span>best_params_,
+                           <span style="color:#e6db74">&#39;Best estimator&#39;</span>: grid_imba<span style="color:#f92672">.</span>best_estimator_,
+                           <span style="color:#e6db74">&#39;Best training score&#39;</span> : grid_imba<span style="color:#f92672">.</span>best_score_,
+                           <span style="color:#e6db74">&#39;Model&#39;</span>: model[<span style="color:#ae81ff">1</span>],
+                           <span style="color:#e6db74">&#39;Best testing score&#39;</span>: recall_score(y_test,grid_imba<span style="color:#f92672">.</span>predict(x_test))}
+
+    score <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;accuracy&#39;</span> : [],
+             <span style="color:#e6db74">&#39;precision&#39;</span> : [],
+             <span style="color:#e6db74">&#39;recall&#39;</span> : [],
+             <span style="color:#e6db74">&#39;f1&#39;</span> : []
+            }
+    <span style="color:#66d9ef">for</span> train_fold_index,val_fold_index <span style="color:#f92672">in</span> kf<span style="color:#f92672">.</span>split(x_train,y_train):
+        x_train_fold, y_train_fold <span style="color:#f92672">=</span> x_train<span style="color:#f92672">.</span>iloc[train_fold_index], y_train<span style="color:#f92672">.</span>iloc[train_fold_index]
+        x_val_fold, y_val_fold <span style="color:#f92672">=</span> x_train<span style="color:#f92672">.</span>iloc[val_fold_index], y_train<span style="color:#f92672">.</span>iloc[val_fold_index]
+        pipeline <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]
+        pipeline<span style="color:#f92672">.</span>fit(x_train_fold,y_train_fold)
+        
+        y_pred <span style="color:#f92672">=</span> pipeline<span style="color:#f92672">.</span>predict(x_val_fold)
+        
+        score[<span style="color:#e6db74">&#39;accuracy&#39;</span>]<span style="color:#f92672">.</span>append(pipeline<span style="color:#f92672">.</span>score(x_val_fold,y_val_fold))
+        score[<span style="color:#e6db74">&#39;precision&#39;</span>]<span style="color:#f92672">.</span>append(precision_score(y_val_fold, y_pred))
+        score[<span style="color:#e6db74">&#39;recall&#39;</span>]<span style="color:#f92672">.</span>append(recall_score(y_val_fold, y_pred))
+        score[<span style="color:#e6db74">&#39;f1&#39;</span>]<span style="color:#f92672">.</span>append(f1_score(y_val_fold,y_pred))
+   
+    <span style="color:#66d9ef">for</span> key, ls <span style="color:#f92672">in</span> score<span style="color:#f92672">.</span>items():
+        best_param_model[model[<span style="color:#ae81ff">0</span>]][key] <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>mean(ls)
+    
+    <span style="color:#66d9ef">print</span>(model_dict[model[<span style="color:#ae81ff">0</span>]])
+    train_prediction <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict(x_train)
+    test_prediction <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict(x_test)
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Train Result:&#39;</span>)
+    <span style="color:#66d9ef">print</span>(classification_report(y_train,train_prediction))
+    
+    metrics<span style="color:#f92672">.</span>plot_confusion_matrix(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_train, y_train)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Confusion Matrix on Training Data for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+    
+    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Test Result:&#39;</span>)
+    <span style="color:#66d9ef">print</span>(classification_report(y_test,test_prediction))
+    metrics<span style="color:#f92672">.</span>plot_confusion_matrix(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_test, y_test)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Confusion Matrix on Testing Data for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+    
+    probs <span style="color:#f92672">=</span> model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>]<span style="color:#f92672">.</span>predict_proba(x_test)[:,<span style="color:#ae81ff">1</span>]
+    average_precision <span style="color:#f92672">=</span> metrics<span style="color:#f92672">.</span>average_precision_score(y_test,probs)
+    metrics<span style="color:#f92672">.</span>plot_precision_recall_curve(model_dict[model[<span style="color:#ae81ff">0</span>]][<span style="color:#e6db74">&#39;Best estimator&#39;</span>],x_test,y_test)
+    plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Precision-Recall Curve for &#39;</span> <span style="color:#f92672">+</span>  model[<span style="color:#ae81ff">0</span>])
+    plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>,<span style="color:#ae81ff">12</span>))
+    plt<span style="color:#f92672">.</span>show()
+    
+</code></pre></div><pre><code>logisticregression
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:    5.1s finished
+
+
+{'Best param': {'penalty': 'l2', 'class_weight': {0: 1, 1: 10}, 'C': 0.001}, 'Best estimator': LogisticRegression(C=0.001, class_weight={0: 1, 1: 10}), 'Best training score': 0.9992670455792314, 'Model': LogisticRegression(), 'Best testing score': 0.8415841584158416}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    227454
+           1       0.78      0.79      0.79       391
+
+    accuracy                           1.00    227845
+   macro avg       0.89      0.90      0.89    227845
+weighted avg       1.00      1.00      1.00    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_3.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     56861
+           1       0.78      0.84      0.81       101
+
+    accuracy                           1.00     56962
+   macro avg       0.89      0.92      0.90     56962
+weighted avg       1.00      1.00      1.00     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_6.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_8.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+randomforestclassifier
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:   44.8s finished
+
+
+{'Best param': {'n_estimators': 50, 'max_depth': 4, 'class_weight': {0: 1, 1: 10}}, 'Best estimator': RandomForestClassifier(class_weight={0: 1, 1: 10}, max_depth=4, n_estimators=50), 'Best training score': 0.9993899361407974, 'Model': RandomForestClassifier(), 'Best testing score': 0.8316831683168316}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    227454
+           1       0.87      0.80      0.83       391
+
+    accuracy                           1.00    227845
+   macro avg       0.94      0.90      0.92    227845
+weighted avg       1.00      1.00      1.00    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_13.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     56861
+           1       0.87      0.82      0.85       101
+
+    accuracy                           1.00     56962
+   macro avg       0.94      0.91      0.92     56962
+weighted avg       1.00      1.00      1.00     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_16.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_18.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+adaboostclassifier
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:  1.2min finished
+
+
+{'Best param': {'n_estimators': 60}, 'Best estimator': AdaBoostClassifier(n_estimators=60), 'Best training score': 0.999297768219623, 'Model': AdaBoostClassifier(), 'Best testing score': 0.7722772277227723}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    227454
+           1       0.85      0.70      0.77       391
+
+    accuracy                           1.00    227845
+   macro avg       0.92      0.85      0.88    227845
+weighted avg       1.00      1.00      1.00    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_23.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     56861
+           1       0.84      0.75      0.80       101
+
+    accuracy                           1.00     56962
+   macro avg       0.92      0.88      0.90     56962
+weighted avg       1.00      1.00      1.00     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_26.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_28.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+xgbclassifier
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed:  2.0min finished
+
+
+{'Best param': {'max_depth': 3, 'gamma': 1}, 'Best estimator': XGBClassifier(gamma=1), 'Best training score': 0.9994689372160899, 'Model': XGBClassifier(), 'Best testing score': 0.8415841584158416}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    227454
+           1       0.95      0.83      0.88       391
+
+    accuracy                           1.00    227845
+   macro avg       0.97      0.91      0.94    227845
+weighted avg       1.00      1.00      1.00    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_33.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     56861
+           1       0.94      0.84      0.89       101
+
+    accuracy                           1.00     56962
+   macro avg       0.97      0.92      0.94     56962
+weighted avg       1.00      1.00      1.00     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_36.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_38.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+kneighborsclassifier
+Fitting 5 folds for each of 3 candidates, totalling 15 fits
+
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 6 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  15 out of  15 | elapsed: 18.1min finished
+
+
+{'Best param': {'n_neighbors': 4, 'algorithm': 'brute'}, 'Best estimator': KNeighborsClassifier(algorithm='brute', n_neighbors=4), 'Best training score': 0.9994513814215805, 'Model': KNeighborsClassifier(), 'Best testing score': 0.801980198019802}
+Train Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00    227454
+           1       0.97      0.75      0.85       391
+
+    accuracy                           1.00    227845
+   macro avg       0.98      0.88      0.92    227845
+weighted avg       1.00      1.00      1.00    227845
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_43.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+
+
+Test Result:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00     56861
+           1       0.95      0.81      0.88       101
+
+    accuracy                           1.00     56962
+   macro avg       0.98      0.91      0.94     56962
+weighted avg       1.00      1.00      1.00     56962
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_46.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<p><img src="https://elleryc.github.io/ellerychan/images/single-blog/frauddetection/index_60_48.png" alt="png"></p>
+<pre><code>&lt;Figure size 864x864 with 0 Axes&gt;
+</code></pre>
+<h3 id="method-4-summary">Method 4 Summary</h3>
+<p>XGBoost Classifier with a parameter of gamma = 1 performs the best. Incorrect fraud detection is almost 0% but there are 20% of the fraud transactions cannot be identified by this model, which is 2 times higher than that of xgbclassifier in method 3.</p>
+<!-- raw HTML omitted -->
+<h1 id="conclusion">Conclusion</h1>
+<p>All in all, I think the best model goes to  xgbclassifier with a parameter of gamma=1 using SMOTE oversamling technique. Although method 4 seems to have the best  performance, the ablity of identifying fraud is not as good as method 3&rsquo;s.</p>
+<p>The company and cardholders will suffer from hugh financial loss if the model is not able to detect as much frauds as it can. Meanwhile, if the model is overly sensitive, it will annoy cardholders frequently and will eventually switch to another credit card service provider. It is important to strike balance between the recall score and precision score.</p>
+<p>Therefore, xgboost classifier with SMOTE is a better option as the false negative rate is still acceptable. Instead of blocking user&rsquo;s transactions once fraud is detected, the company could ask for further verification from customer so that it can reduce the inconvenience bought by wrong detections.</p>
+<p><a href="https://github.com/elleryc/credit_card_fraud.git">Link to GitHub Repository</a></p>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+    </div>
+    <section class="contact" id="contact">
+  <div class="contact__background_shape">
+      <svg viewBox="0 0 1920 79">
+          <path d="M0 0h1920v79L0 0z" data-name="Path 1450" />
+      </svg>
+  </div>
+  
+      <div class="row contact__widget">
+          <div class="col-lg-4">
+              <div class="contact__widget_logo">
+                  <img src="https://elleryc.github.io/ellerychan/images/contact/widget-logo.png" alt="widget-logo">
+              </div>
+          </div>
+          
+          <div class="col-lg-4">
+              <div class="contact__widget_address">
+                  <h3>Contact</h3>
+                  
+                  <ul>
+                      
+                      <li><a href="mailto:hooyeeechan@gmail.com"><i class="fa fa-envelope"></i>hooyeeechan@gmail.com</a></li>
+                      <li><a href="https://www.linkedin.com/in/ellery-chan-57355a14b/"><i class="fa fa-linkedin"></i>Ellery Chan</a></li>
+                      <li><a href="https://github.com/elleryc"><i class="fa fa-github"></i>Ellery Chan</a></li>
+                      
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="row contact__footer">
+          <div class="col-lg-6">
+              <div class="contact__footer_copy">
+                  <p>All right reserved copyright © Ellery Chan 2020</p>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="contact__footer_social">
+                  <ul>
+                      
+                      <li><a href="https://www.linkedin.com/in/ellery-chan-57355a14b/"><i class="fa fa-linkedin"></i></a></li>
+                      
+                      <li><a href="https://github.com/elleryc"><i class="fa fa-github"></i></a></li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR%20GOOGLE%20MAP%20API&libraries=geometry"></script>
+<script src="https://elleryc.github.io/ellerychan/plugins/jQuery/jquery.min.js"></script>
+<script src="https://elleryc.github.io/ellerychan/plugins/bootstrap/bootstrap.min.js"></script>
+<script src="https://elleryc.github.io/ellerychan/plugins/slick/slick.min.js"></script>
+<script src="https://elleryc.github.io/ellerychan/plugins/slick/slick.min.js"></script>
+<script src="https://elleryc.github.io/ellerychan/plugins/waypoint/jquery.waypoints.min.js"></script>
+<script src="https://elleryc.github.io/ellerychan/plugins/magnafic-popup/jquery.magnific-popup.min.js"></script>
+<script src="https://elleryc.github.io/ellerychan/plugins/tweenmax/TweenMax.min.js"></script>
+<script src="https://elleryc.github.io/ellerychan/plugins/masonry/masonry.min.js"></script>
+
+<script src="https://elleryc.github.io/ellerychan/js/form-handler.min.js"></script>
+
+<script src="https://elleryc.github.io/ellerychan/js/script.min.js"></script>
+  </body>
+</html>
